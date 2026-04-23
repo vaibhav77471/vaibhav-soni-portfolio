@@ -5,13 +5,12 @@ export default function HeroSection() {
   return (
     <section
       id="home"
-      className="min-h-screen flex items-center justify-between px-20 relative 
-      bg-gradient-to-br from-[#020617] via-[#071a0c] to-[#020617]"
+      /* FIXED: Keeping the className on a single line or concatenated without physical line breaks */
+      className="min-h-screen flex items-center justify-between px-20 relative bg-gradient-to-br from-[#020617] via-[#071a0c] to-[#020617]"
     >
 
       {/* LEFT CONTENT */}
       <div className="max-w-xl">
-
         <p className="text-gray-300 mb-4">
           Hello 👋, great to have you here
         </p>
@@ -25,12 +24,10 @@ export default function HeroSection() {
           I build modern, scalable and high-performance web applications
           using React, Next.js and modern frontend tools.
         </p>
-
       </div>
 
       {/* RIGHT SIDE - ID CARD */}
       <div className="relative flex items-center justify-center">
-
         {/* Hook */}
         <div className="absolute -top-24 w-2 h-28 bg-gray-600 rounded"></div>
 
@@ -42,22 +39,17 @@ export default function HeroSection() {
           className="w-72 h-[420px] bg-white rounded-2xl shadow-2xl p-5 text-black relative"
         >
           <div className="flex flex-col items-center">
-
             <img
               src="/images/profile.png"
               alt="profile"
               className="w-40 h-40 object-cover rounded-md mb-4"
             />
-
             <h2 className="text-xl font-bold">VAIBHAV SONI</h2>
-
             <span className="mt-2 text-sm border px-3 py-1 rounded-full">
               Available for work
             </span>
-
           </div>
         </motion.div>
-
       </div>
 
       {/* BOTTOM STRIP */}
