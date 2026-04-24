@@ -5,33 +5,31 @@ import { motion } from 'framer-motion'
 
 export default function HomeSection() {
   return (
-    <section className="min-h-screen w-full flex flex-row-reverse md:flex-col sm:flex-col items-center justify-around md:justify-between px-6 md:px-24 relative overflow-hidden py-10 md:py-0 
-      bg-[#020617] bg-[radial-gradient(circle_at_60%_50%,_#072e12_0%,_#020617_70%)]"
+    <section
+      className="min-h-screen w-full flex flex-col md:flex-row items-center justify-center px-4 md:px-16 py-16 relative overflow-hidden bg-gradient-to-br from-[#0f2027] via-[#2c5364] to-[#232526]"
     >
-      
-      {/* 1. ID CARD SECTION */}
-      {/* On mobile: Top | On Desktop: Right */}
-      <div className="z-20 mb-12 md:mb-0">
+      {/* Glassmorphism Card */}
+      <div className="z-20 mb-12 md:mb-0 md:mr-16 flex-shrink-0">
         <IDCardAnimation>
-          <div className="w-[300px] h-[380px] md:w-72 md:h-[420px] bg-white rounded-2xl shadow-[0_30px_60px_-15px_rgba(0,0,0,0.7)] p-6 flex flex-col items-center border-[8px] border-white text-black">
+          <div className="w-[320px] h-[420px] md:w-80 md:h-[460px] bg-white/10 backdrop-blur-lg rounded-3xl shadow-2xl p-6 flex flex-col items-center border-[2px] border-white/20 text-white relative">
             {/* Lanyard Hole */}
-            <div className="w-10 h-3 bg-zinc-200 rounded-full mb-6 shadow-inner" />
+            <div className="w-12 h-3 bg-white/40 rounded-full mb-6 shadow-inner" />
 
-            {/* Profile Image - Reduced width slightly to look more balanced */}
-            <div className="w-full aspect-square bg-zinc-100 rounded-lg overflow-hidden mb-6 border border-zinc-200">
-              <img 
-                src="/images/profile.png" 
-                alt="Profile" 
+            {/* Profile Image */}
+            <div className="w-full aspect-square bg-white/20 rounded-xl overflow-hidden mb-6 border border-white/30">
+              <img
+                src="/images/profile.png"
+                alt="Profile"
                 className="w-full h-full object-cover grayscale contrast-125 brightness-110"
                 draggable="false"
               />
             </div>
 
-            <div className="text-center bg-[#fff] p-4 w-full">
-              <h2 className="text-2xl md:text-3xl font-black leading-none uppercase tracking-tighter">
-                Vaibhav  Soni
+            <div className="text-center bg-white/20 p-4 w-full rounded-xl">
+              <h2 className="text-2xl md:text-3xl font-black leading-none uppercase tracking-tighter text-white drop-shadow">
+                Vaibhav Soni
               </h2>
-              <Badge variant="outline" className="mt-6 border-zinc-300 text-zinc-500 font-bold uppercase tracking-widest text-[15px] px-3 py-5 rounded-full">
+              <Badge variant="outline" className="mt-6 border-lime-400 text-lime-400 font-bold uppercase tracking-widest text-[15px] px-4 py-2 rounded-full bg-black/60">
                 Available for work
               </Badge>
             </div>
@@ -39,25 +37,24 @@ export default function HomeSection() {
         </IDCardAnimation>
       </div>
 
-      {/* 2. TEXT CONTENT SECTION */}
-      {/* On mobile: Below Image | On Desktop: Left Side */}
-      <div className="max-w-2xl z-10 flex flex-col items-start text-left">
-        <motion.p 
+      {/* Text Content Section */}
+      <div className="max-w-2xl z-10 flex flex-col items-start text-left bg-black/30 rounded-2xl p-8 shadow-xl backdrop-blur-md">
+        <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1 }}
-          className="text-[#fff] mb-4 font-medium"
+          className="text-lime-300 mb-4 font-medium text-lg drop-shadow"
         >
           Hello 👋, great to have you here
         </motion.p>
-        
-        <motion.h1 
+
+        <motion.h1
           initial={{ opacity: 0, x: -30 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 1.2 }}
-          className="text-4xl md:text-7xl font-black text-[#fff] leading-[1.1] uppercase"
+          className="text-4xl md:text-7xl font-black text-white leading-[1.1] uppercase drop-shadow-lg"
         >
-          I'M A <span className="text-[#fff] italic">PRODUCT DESIGNER</span> <br /> 
+          I'M A <span className="text-lime-400 italic">PRODUCT DESIGNER</span> <br />
           CRAFTING FINTECH PRODUCTS
         </motion.h1>
 

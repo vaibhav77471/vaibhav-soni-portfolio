@@ -37,9 +37,9 @@ export default function Navbar() {
 
         {/* RIGHT - Resume Button */}
         <div className="flex-shrink-0 mr-[20px]">
-          <button className="flex items-center h-[40px] gap-3 bg-[#333531]/40 border border-[#4a4c49] rounded-full pl-8 pr-2 py-2 hover:bg-[#333531]/60 transition-all group">
+          <a href="/resume.pdf" download className="flex items-center h-[40px] gap-3 bg-[#333531]/40 border border-[#4a4c49] rounded-full pl-8 pr-2 py-2 hover:bg-[#333531]/60 transition-all group no-underline">
             <span className="text-[#fff] text-[20px] font-bold">
-              Resume
+              Resume ↓
             </span>
             <div className="flex items-center justify-center bg-[#1d1d1b] border border-[#4a4c49] rounded-full p-2 group-hover:border-white transition-colors">
               <svg 
@@ -55,7 +55,7 @@ export default function Navbar() {
                 <path d="M12 7v10m0 0l-5-5m5 5l5-5" />
               </svg>
             </div>
-          </button>
+          </a>
         </div>
 
       </nav>
