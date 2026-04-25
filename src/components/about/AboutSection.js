@@ -1,63 +1,121 @@
-import Image from "next/image";
-
 export default function AboutSection() {
   return (
-    <section id="about" className="py-16 px-4 md:px-20 bg-[#000000] text-[#f6ffe0]">
-      <div className="flex flex-col md:flex-row items-center md:items-start justify-between gap-12 max-w-7xl mx-auto">
-        {/* Left: Text Content */}
-        <div className="flex-1 max-w-2xl">
-          <h2 className="text-4xl font-bold mb-8 text-[#f6ffe0]">A Bit About Me</h2>
-          <div className="text-lg text-[#f6ffe0] space-y-6">
-            <p>
-              Began with a creative interest in graphic design. Later, I spent 5.5 years as a fraud analyst in banking. I bring a rare blend of visual craft and analytical thinking to product design. I now design fintech experiences at ZET, focusing on usability, clarity, and creating business impact often integrating AI tools in my workflow to speed up exploration, ideation, and problem-solving.
-            </p>
-            <p>
-              Beyond design, I love experiencing visual storytelling on the big screen (yes, I watch a lot of movies!). I’m also into <span className="inline-flex items-center">Chess <span className="ml-1">♟️</span></span> feel free to challenge me for a fun match. I’m curious about tech gadgets and bikes, too.
-            </p>
-          </div>
+    <section id="about" className="min-h-screen px-[10rem] md:px-20 bg-transparent text-[#fff] flex items-center justify-center backdrop-blur-md" >
+      <div className="max-w-5xl mx-auto w-full text-center">
 
-          {/* Stats Row */}
-          <div className="flex gap-10 mt-10 mb-8">
-            <div>
-              <div className="text-5xl font-bold text-lime-200 leading-none">02</div>
-              <div className="text-base text-[#f6ffe0] opacity-80 mt-1">Years of Experience</div>
-            </div>
-            <div>
-              <div className="text-5xl font-bold text-lime-200 leading-none">10+</div>
-              <div className="text-base text-[#f6ffe0] opacity-80 mt-1 font-semibold">Completed Projects</div>
-            </div>
-            <div>
-              <div className="text-5xl font-bold text-lime-200 leading-none">03+</div>
-              <div className="text-base text-[#f6ffe0] opacity-80 mt-1 font-semibold">Companies worked</div>
-            </div>
-          </div>
+        {/* Heading */}
+        <div className="mb-14">
+          <h2 className="text-[50px] md:text-5xl font-bold tracking-wide">
+            About Me
+          </h2>
 
-          {/* Contact Info */}
-          <div className="flex flex-col sm:flex-row gap-8 mt-4">
-            <div>
-              <div className="font-bold text-xl mb-1">Contact</div>
-              <div className="text-[#f6ffe0] opacity-90 text-lg">+91 93916 31292</div>
-            </div>
-            <div>
-              <div className="font-bold text-xl mb-1">Email :</div>
-              <div className="text-[#f6ffe0] opacity-90 text-lg">nirannagasai@gmail.com</div>
-            </div>
-          </div>
+          {/* Subheading */}
+          <p className="text-[20px] md:text-xl text-[#fff] mt-5 max-w-3xl mx-auto leading-relaxed">
+            Turning ideas into <span className="font-semibold text-white">scalable</span>,{" "}
+            <span className="font-semibold text-white">high-performance</span> web applications
+            with modern technologies.
+          </p>
         </div>
 
-        {/* Right: Profile Image */}
-        <div className="flex-1 flex justify-center md:justify-end">
-          <div className="rounded-[45%] border-4 border-lime-200 p-2 md:p-4 bg-black shadow-xl max-w-xs">
-            <Image
-              src="/images/profile.png"
-              alt="Profile photo"
-              width={350}
-              height={420}
-              className="rounded-[40%] object-cover"
-              priority
-            />
-          </div>
+        {/* Content */}
+        <div className="space-y-6 text-[20px] text-base md:text-lg leading-relaxed text-[#fff] max-w-3xl mx-auto text-justify">
+
+          <p>
+            I started my journey with a background in{" "}
+            <span className="font-semibold text-white">
+              Electronics and Communication Engineering
+            </span>, but my passion for building on the web led me to transition into software development.
+            I am a <span className="font-semibold text-white">Full Stack Developer</span> focused on
+            creating modern, scalable, and user-friendly applications.
+          </p>
+
+          <p>
+            Currently, I’m working on real-world projects like a{" "}
+            <span className="font-semibold text-white">
+              casino gaming platform using Next.js, Tailwind CSS, and Firebase
+            </span>, where I build reusable UI components, handle complex state management,
+            and ensure smooth user experience.
+          </p>
+
+          <p>
+            Beyond coding, I’m passionate about{" "}
+            <span className="font-semibold text-white">
+              design, animations, and UI/UX
+            </span>. I also love exploring new technologies, improving my problem-solving skills,
+            and sharing my learnings.
+          </p>
+
         </div>
+
+        {/* Stats */}
+        <div className="flex flex-wrap text-[20px] justify-center gap-[12px] mt-14 text-center">
+
+          <div>
+            <div className="text-4xl md:text-5xl font-bold text-lime-200">
+              01+
+            </div>
+            <div className="text-sm md:text-base opacity-80 mt-2">
+              Years of Experience
+            </div>
+          </div>
+          <br />
+
+          <div>
+            <div className="text-4xl md:text-5xl font-bold text-lime-200">
+              08+
+            </div>
+            <div className="text-sm md:text-base opacity-80 mt-2">
+              Completed Projects
+            </div>
+          </div>
+          <br />
+
+
+          <div>
+            <div className="text-4xl md:text-5xl font-bold text-lime-200">
+              08+
+            </div>
+            <div className="text-sm md:text-base opacity-80 mt-2">
+              Completed Projects
+            </div>
+          </div>
+          <br />
+
+
+          <div>
+            <div className="text-4xl md:text-5xl font-bold text-lime-200">
+              01
+            </div>
+            <div className="text-sm md:text-base opacity-80 mt-2">
+              Company Experience
+            </div>
+          </div>
+
+        </div>
+
+        {/* Contact */}
+        <div className="flex flex-col sm:flex-row justify-center items-center gap-[12px] mt-[14px] text-center">
+
+          <div>
+            <div className="font-semibold text-[20px] mb-1">
+              Contact
+            </div>
+            <div className="text-[#fff]">
+              +91 8770643009
+            </div>
+          </div>
+
+          <div>
+            <div className="font-semibold text-[20px] mb-1">
+              Email
+            </div>
+            <div className="text-[#fff]">
+              vaibhavsoni044@gmail.com
+            </div>
+          </div>
+
+        </div>
+
       </div>
     </section>
   );
