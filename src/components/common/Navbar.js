@@ -1,65 +1,76 @@
 'use client'
 
-import React from 'react'
+import { useState } from 'react'
 
 export default function Navbar() {
+  const [open, setOpen] = useState(false)
+
   return (
-    <div className="fixed top-8 left-0 w-full z-50 flex justify-center px-4">
+    <div className=" fixed top-0 left-0 w-full z-[50] bg-black/30 backdrop-blur-lg " >
+      <nav className=" max-w-[1200px] flex items-center justify-between h-[70px] px-[20px] md:px-[40px] mx-auto ">
 
-      <nav className="flex items-center justify-between h-[70px] w-full max-w-[800px] bg-[#1d1d1b] border border-[#333531] rounded-full px-10 shadow-2xl">
-
-        {/* LEFT - Logo */}
-        <div className="flex items-center ml-[20px] gap-3 flex-shrink-0">
-          <div className="bg-white rounded-full p-2 flex items-center justify-center shadow-inner">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" className='text-[#fff]'>
-              <path d="M13 10V3L4 14H11V21L20 10H13Z" fill="currentColor"/>
+        {/* 🔥 LEFT — Logo */}
+        <div className="flex items-center gap-[12px]">
+          <div className="w-[40px] h-[40px] rounded-full bg-[#fff]/10 flex items-center justify-center">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+              <path d="M13 10V3L4 14H11V21L20 10H13Z" fill="[#fff]"/>
             </svg>
           </div>
-          <span className="text-[#ffff] text-[24px] font-extrabold font-mono tracking-tight">
+
+          <span className="text-[#fff] text-[18px] md:text-[20px] font-bold">
             Vaibhav Soni
           </span>
         </div>
 
-        {/* CENTER - Nav Links */}
-        <div className="flex-1 flex justify-center">
-          <div className="flex items-center gap-12">
-            {['Home', 'Projects', 'About me', 'Reach me'].map((item) => (
-              <a 
-                key={item} 
-                href={`#${item.toLowerCase().replace(' ', '')}`} 
-                className="text-[#f5f6f2] text-[20px] m-[20px] font-bold hover:text-gray-400 transition-all duration-200 no-underline"
+        {/* 🔥 DESKTOP LINKS */}
+        <div className="hidden md:flex items-center gap-[28px]">
+
+          <div className="flex items-center gap-[20px]">
+            {['Home', 'Projects', 'About', 'Contact'].map((item) => (
+              <a
+                key={item}
+                href={`#${item.toLowerCase()}`}
+                className="text-[#fff]/70 text-[14px] font-semibold hover:text-[#fff] transition"
               >
                 {item}
               </a>
             ))}
           </div>
+
+          <a href="/resume.pdf" download className=" px-[14px] py-[7px] rounded-full bg-[#fff]/10 text-[#fff] text-[14px] font-semibold hover:bg-[#fff] hover:text-black transition " >
+            Resume
+          </a>
+
         </div>
 
-        {/* RIGHT - Resume Button */}
-        <div className="flex-shrink-0 mr-[20px]">
-          <a href="/resume.pdf" download className="flex items-center h-[40px] gap-3 bg-[#333531]/40 border border-[#4a4c49] rounded-full pl-8 pr-2 py-2 hover:bg-[#333531]/60 transition-all group no-underline">
-            <span className="text-[#fff] text-[20px] font-bold">
-              Resume ↓
-            </span>
-            <div className="flex items-center justify-center bg-[#1d1d1b] border border-[#4a4c49] rounded-full p-2 group-hover:border-white transition-colors">
-              <svg 
-                width="20" 
-                height="20" 
-                viewBox="0 0 24 24" 
-                fill="none" 
-                stroke="white" 
-                strokeWidth="2.5" 
-                strokeLinecap="round" 
-                strokeLinejoin="round"
-              >
-                <path d="M12 7v10m0 0l-5-5m5 5l5-5" />
-              </svg>
-            </div>
-          </a>
-        </div>
+        {/* 🔥 MOBILE BURGER */}
+        <button
+          onClick={() => setOpen(!open)}
+          className="md:hidden flex flex-col gap-[5px]"
+        >
+          <span className="w-[24px] h-[2px] bg-[#fff]"></span>
+          <span className="w-[24px] h-[2px] bg-[#fff]"></span>
+          <span className="w-[24px] h-[2px] bg-[#fff]"></span>
+        </button>
 
       </nav>
+
+      {/* 🔥 MOBILE MENU */}
+      {open && (
+        <div className=" md:hidden bg-black/80 backdrop-blur-xl border-t border-[#fff]/10 px-[20px] py-[20px] flex flex-col gap-[16px] ">
+
+          {['Home', 'Projects', 'About', 'Contact'].map((item) => (
+            <a key={item} href={`#${item.toLowerCase()}`} onClick={() => setOpen(false)} className="text-[#fff]/80 text-[16px] font-semibold hover:text-[#fff] transition" >
+              {item}
+            </a>
+          ))}
+
+          <a href="/resume.pdf" download className=" mt-[10px] text-center py-[10px] rounded-full bg-[#fff] text-black font-semibold " >
+            Download Resume
+          </a>
+
+        </div>
+      )}
     </div>
   )
 }
-
