@@ -1,6 +1,23 @@
+import { Bebas_Neue, Poppins, Inter } from 'next/font/google';
+
+const bebas = Bebas_Neue({
+  subsets: ['latin'],
+  weight: '400',
+});
+
+const poppins = Poppins({
+  subsets: ['latin'],
+  weight: ['400', '600'],
+});
+
+const inter = Inter({
+  subsets: ['latin'],
+});
+
+
 export default function HeroSection() {
   return (
-    <section className="relative flex items-center justify-center h-[auto] w-full bg-black overflow-hidden font-sans">
+    <section className="relative flex items-center justify-center h-[auto] w-full bg-black overflow-hidden font-['Bebas_Neue']" id="home">
 
       <div className="relative flex flex-col items-center">
         
@@ -20,12 +37,12 @@ export default function HeroSection() {
         </div>
 
         {/* Name */}
-        <h2 className="absolute -bottom-[150px] md:-bottom-12 text-[#fff] text-[14vw] font-black uppercase leading-none text-center select-none z-30 drop-shadow-2xl font-['Bebas_Neue'] tracking-[0.1em]">
+        <h2 className="absolute -bottom-[160px] md:-bottom-12 text-[grey] text-[14vw] font-black uppercase leading-none text-center select-none z-30 drop-shadow-2xl font-['Bebas_Neue'] tracking-[0.1em]">
           VAIBHAV
         </h2>
 
         {/* Tagline */}
-        <p className="absolute bottom-[0px] md:bottom-[-80px] text-center text-[20px] md:text-lg text-[#fff] tracking-wide z-30 max-w-xl">
+        <p className="absolute bottom-[-20px] md:bottom-[-80px] text-center text-[20px] md:text-lg text-[#fff] tracking-wide z-30 max-w-xl">
           A Software Engineer crafting innovative solutions and immersive digital experiences
         </p>
 
