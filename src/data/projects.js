@@ -1,6 +1,22 @@
 export const projects = [
  
   // 🔥 PERSONAL PROJECTS
+   {
+    slug: "casino-lobby",
+    title: "Casino Lobby Platform",
+    description:
+      "Full-scale casino lobby platform where users can explore and play multiple real-time games. Includes authentication, dynamic game routing, iframe-based game launcher, and scalable architecture for integrating multiple casino games.",
+    image: "https://images.unsplash.com/photo-1706129867447-b4f156c46641?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    tech: ["Next.js", "React Query", "Zustand", "Tailwind", "Shadcn UI"],
+    category: "Professional",
+    highlights: [
+      "Multi-game platform architecture",
+      "Dynamic routing for games",
+      "Game launcher API integration",
+      "Reusable component system",
+      "i18n support and scalable structure"
+    ]
+  },
   {
     slug: "recipe-finder",
     title: "Recipe Finder App",
@@ -79,81 +95,5 @@ export const projects = [
     tech: ["C++"],
     category: "Personal",
   },
-  {
-    slug: "crash-game",
-    title: "Crash Game (Full Stack)",
-    description:
-      "Real-time Crash game with multiplier engine, betting system, auto cashout logic, and live state management. Built with scalable architecture and optimized performance for casino platforms.",
-    image: "/projects/crash.png",
-    tech: ["Next.js", "Zustand", "WebSockets", "Tailwind", "Shadcn UI"],
-    category: "Professional",
-    github: "",
-    liveUrl: "",
-  },
-  {
-    slug: "keno-game",
-    title: "Keno Game (Full Stack)",
-    description:
-      "Fully functional Keno game with number selection logic, bet handling, result generation, and dynamic payout system with responsive UI.",
-    image: "/projects/keno.png",
-    tech: ["Next.js", "Tailwind", "Shadcn UI"],
-    category: "Professional",
-    github: "",
-    liveUrl: "",
-  },
-  {
-    slug: "roulette-game",
-    title: "Roulette Game (Full Stack)",
-    description:
-      "Complete roulette game featuring betting engine, wheel spin logic, result calculation, and interactive betting board with smooth animations.",
-    image: "/projects/roulette.png",
-    tech: ["Next.js", "Framer Motion", "Tailwind", "Shadcn UI"],
-    category: "Professional",
-    github: "",
-    liveUrl: "",
-  },
-  {
-    slug: "blackjack-game",
-    title: "Blackjack Game (Full Stack)",
-    description:
-      "Multiplayer-ready blackjack game with card dealing logic, hit/stand actions, game rules implementation, and real-time UI updates.",
-    image: "/projects/blackjack.png",
-    tech: ["Next.js", "Socket.io", "Tailwind", "Shadcn UI"],
-    category: "Professional",
-    github: "",
-    liveUrl: "",
-  },
-  {
-    slug: "mines-game",
-    title: "Mines Game (Full Stack)",
-    description:
-      "Interactive Mines game with probability-based logic, risk-reward system, and real-time user interaction handling.",
-    image: "/projects/mines.png",
-    tech: ["Next.js", "Zustand", "Tailwind"],
-    category: "Professional",
-    github: "",
-    liveUrl: "",
-  },
-  {
-    slug: "tower-game",
-    title: "Tower Game (Full Stack)",
-    description:
-      "Step-based Tower betting game with progressive reward logic, user decision flow, and dynamic state management.",
-    image: "/projects/tower.png",
-    tech: ["Next.js", "Tailwind", "Shadcn UI"],
-    category: "Professional",
-    github: "",
-    liveUrl: "",
-  },
-  {
-    slug: "spin-wheel",
-    title: "Spin Wheel Game",
-    description:
-      "Fully functional spin wheel with rotation physics, outcome calculation, and engaging animation system.",
-    image: "/projects/spin.png",
-    tech: ["Next.js", "Framer Motion", "Tailwind"],
-    category: "Professional",
-    github: "",
-    liveUrl: "",
-  }
+  
 ];

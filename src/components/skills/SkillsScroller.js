@@ -1,79 +1,123 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { useEffect, useState } from 'react'
 
 const skills = [
-  { name: "React", image: "/skills/react.png" },
-  { name: "Next.js", image: "/skills/next.png" },
-  { name: "Tailwind CSS", image: "/skills/tailwind.png" },
-  { name: "JavaScript", image: "/skills/js.png" },
-  { name: "TypeScript", image: "/skills/ts.png" },
-  { name: "Framer Motion", image: "/skills/framer.png" },
-  { name: "shadcn/ui", image: "/skills/shadcn.png" },
-  { name: "Zustand", image: "/skills/zustand.png" },
-  { name: "Node.js", image: "/skills/nodejs.png" },
-  { name: "Express.js", image: "/skills/express.png" },
-  { name: "MongoDB", image: "/skills/mongodb.png" },
-  { name: "Git", image: "/skills/git.png" },
-  { name: "HTML5", image: "/skills/html.png" },
-  { name: "CSS3", image: "/skills/css.png" },
-  { name: "Material UI", image: "/skills/materialui.png" },
-  { name: "MySQL", image: "/skills/mysql.png" },
-  { name: "Redux", image: "/skills/redux.png" },
+  "React", "Next.js", "Tailwind", "JavaScript", "TypeScript",
+  "Framer Motion", "Zustand", "Node.js", "Express",
+  "MongoDB", "Redux", "Git"
 ]
 
-// duplicate for seamless loop
-const scrollSkills = [...skills, ...skills]
+export default function SkillsWheel() {
+  const [angle, setAngle] = useState(0)
+  const [activeIndex, setActiveIndex] = useState(0)
+  const [size, setSize] = useState(600)
 
-export default function SkillsScroller() {
+  // 🔥 RESPONSIVE SIZE + RADIUS CONTROL
+  useEffect(() => {
+    const updateSize = () => {
+      const w = window.innerWidth
+
+      if (w < 480) setSize(320)
+      else if (w < 768) setSize(420)
+      else if (w < 1024) setSize(520)
+      else setSize(600)
+    }
+
+    updateSize()
+    window.addEventListener('resize', updateSize)
+
+    return () => window.removeEventListener('resize', updateSize)
+  }, [])
+
+  const radius = size * 0.35
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setAngle((prev) => {
+        const next = prev + 0.25
+
+        const normalized = ((next % 360) + 360) % 360
+        const index = Math.floor((normalized / 360) * skills.length)
+
+        setActiveIndex(index)
+        return next
+      })
+    }, 16)
+
+    return () => clearInterval(interval)
+  }, [])
+
   return (
-    <section
-      id="skills"
-      className="w-full mt-[50px] px-[80px] flex flex-col items-center overflow-hidden"
-    >
-      {/* Heading */}
-      <h2 className="text-[50px] font-bold text-white mt-[50px]">
-        Skills
-      </h2>
+    <section className="relative w-full min-h-screen flex items-center justify-center bg-black overflow-hidden">
 
-      {/* Container */}
-      <div className="relative w-full overflow-hidden mt-[50px]">
+      {/* background glow */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(168,85,247,0.18),transparent_60%)]" />
 
-        {/* Fade edges */}
-        <div className="absolute left-0 top-0 h-full w-[120px] bg-gradient-to-r from-black to-transparent z-10 pointer-events-none" />
-        <div className="absolute right-0 top-0 h-full w-[120px] bg-gradient-to-l from-black to-transparent z-10 pointer-events-none" />
+      {/* WHEEL */}
+      <div
+        className="relative flex items-center justify-center"
+        style={{
+          width: size,
+          height: size
+        }}
+      >
 
-        {/* Scrolling Row */}
-        <motion.div
-          className="flex gap-[60px] w-max"
-          animate={{ x: ['0%', '-50%'] }}
-          transition={{
-            repeat: Infinity,
-            ease: 'linear',
-            duration: 50,
-          }}
-        >
-          {scrollSkills.map((skill, i) => (
+        {skills.map((skill, i) => {
+          const angleStep = (360 / skills.length) * i + angle
+          const rad = (angleStep * Math.PI) / 180
+
+          const x = Math.cos(rad) * radius
+          const y = Math.sin(rad) * radius
+
+          const isActive = i === activeIndex
+
+          return (
             <div
               key={i}
-              className="flex flex-col items-center min-w-[160px] group"
+              className="absolute transition-all duration-300"
+              style={{
+                transform: `translate(${x}px, ${y}px)`
+              }}
             >
-              {/* Image */}
-              <div className="w-[120px] h-[120px] rounded-[24px] bg-white/5 flex items-center justify-center backdrop-blur-md shadow-[0_10px_30px_rgba(0,0,0,0.5)] transition duration-300 group-hover:scale-[1.1]">
-                <img
-                  src={skill.image}
-                  alt={skill.name}
-                  className="w-[100px] h-[100px] object-fill"
-                />
-              </div>
+              <div
+                className={`
+                  flex items-center justify-center
+                  rounded-[20px]
+                  backdrop-blur-md
+                  border
+                  transition-all duration-300
 
-              {/* Name */}
-              <p className="mt-[16px] text-[18px] text-white/80 group-hover:text-white transition">
-                {skill.name}
-              </p>
+                  ${isActive
+                    ? "bg-purple-500/20 border-purple-400 shadow-[0_0_40px_rgba(168,85,247,0.6)] scale-110"
+                    : "bg-white/5 border-white/10 opacity-70 scale-100"
+                  }
+                `}
+                style={{
+                  width: size < 480 ? 70 : 110,
+                  height: size < 480 ? 70 : 110
+                }}
+              >
+                <span className="text-white text-xs md:text-sm font-semibold text-center">
+                  {skill}
+                </span>
+              </div>
             </div>
-          ))}
-        </motion.div>
+          )
+        })}
+
+        {/* CENTER CORE */}
+        <div
+          className="absolute rounded-full bg-black border border-white/20 shadow-[0_0_80px_rgba(168,85,247,0.5)] flex items-center justify-center"
+          style={{
+            width: size < 480 ? 90 : 140,
+            height: size < 480 ? 90 : 140
+          }}
+        >
+          <span className="text-white text-[10px] md:text-xs tracking-[3px] text-center">
+            SKILLS CORE
+          </span>
+        </div>
 
       </div>
     </section>
