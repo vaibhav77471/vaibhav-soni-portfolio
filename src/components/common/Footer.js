@@ -2,21 +2,37 @@
 
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from "framer-motion"
+import toast from "react-hot-toast"
+
+import emailjs from '@emailjs/browser'
 
 export default function FooterSection() {
   const [open, setOpen] = useState(false)
   const [mouse, setMouse] = useState({ x: 50, y: 50 })
   const [isMobile, setIsMobile] = useState(false)
 
-  // ✅ detect screen width
+  // form states
+  const [loading, setLoading] = useState(false)
+  const [success, setSuccess] = useState(false)
+
+  const [form, setForm] = useState({
+    name: '',
+    email: '',
+    message: ''
+  })
+
+  useEffect(() => {
+    emailjs.init("v4tMZdVnZGIECrngX")
+  }, [])
+
+  // detect screen width
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth < 900)
     }
 
-    handleResize() // run initially
+    handleResize()
     window.addEventListener("resize", handleResize)
-
     return () => window.removeEventListener("resize", handleResize)
   }, [])
 
@@ -29,11 +45,53 @@ export default function FooterSection() {
     setMouse({ x, y })
   }
 
+  // ✅ HANDLE SUBMIT (FRONTEND ONLY)
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+
+    try {
+      setLoading(true)
+      setSuccess(false)
+
+      const result = await emailjs.send(
+        "service_ry560x7",
+        "template_lz3pzli",
+        {
+          name: form.name,
+          email: form.email,
+          message: form.message,
+        },
+        "v4tMZdVnZGIECrngX"
+      )
+
+      setSuccess(true)
+      toast.success("Message sent successfully 🚀")
+
+
+      setForm({ name: "", email: "", message: "" })
+      setOpen(false)
+
+    } catch (error) {
+
+      toast.error(
+        error?.text || "Failed to send message 😢"
+      )
+
+      alert(
+        `EmailJS Failed 🚨\n` +
+        `Status: ${error?.status || "unknown"}\n` +
+        `Message: ${error?.text || error?.message || "No message"}`
+      )
+    } finally {
+      setLoading(false)
+    }
+  }
+
   return (
     <section
       id="contact"
       onMouseMove={handleMove}
-      className="relative px-[80px] py-[100px] bg-black text-[#fff] overflow-hidden"
+      className="relative px-[80px] py-[100px] bg-[rgba(0,0,0,0.35)] text-[#fff] overflow-hidden"
     >
 
       {/* background */}
@@ -49,7 +107,7 @@ export default function FooterSection() {
             }`}
         >
 
-          {/* LEFT CONTENT */}
+          {/* LEFT */}
           <div className={`flex-1 ${isMobile ? "text-center" : ""}`}>
 
             <h2 className="text-[42px] font-light mb-[30px]">
@@ -85,7 +143,7 @@ export default function FooterSection() {
             {!open && (
               <button
                 onClick={() => setOpen(true)}
-                className="relative overflow-hidden w-full rounded-[999px] py-[16px] bg-[rgba(255,255,255,0.06)] border border-[rgba(255,255,255,0.15)] backdrop-blur-[12px] text-[#fff]/80 font-semibold transition-all duration-300 hover:scale-[1.03] hover:text-black"
+                className="relative overflow-hidden w-full rounded-[999px] py-[16px] bg-[rgba(255,255,255,0.06)] border border-[rgba(255,255,255,0.15)] backdrop-blur-[12px] text-[#fff]/80 font-semibold transition-all duration-300 hover:scale-[1.03] hover:text-[rgba(0,0,0,0.35)]"
               >
                 Get In Touch →
               </button>
@@ -101,6 +159,7 @@ export default function FooterSection() {
                   transition={{ duration: 0.35 }}
                   className="mt-[30px] rounded-[24px] border border-[rgba(255,255,255,0.12)] bg-[rgba(11,15,23,0.75)] backdrop-blur-[22px] p-[22px]"
                 >
+
                   <div className="flex justify-between mb-[18px]">
                     <h3 className="text-[22px] font-light">Send Message</h3>
 
@@ -111,19 +170,62 @@ export default function FooterSection() {
                       ✕
                     </button>
                   </div>
+                  <form onSubmit={handleSubmit} className="flex flex-col gap-[12px]">
 
-                  {/* rest of your form unchanged */}
-                  <div className="flex flex-col gap-[12px] relative z-10">
-                    <input placeholder="Name" className="px-[14px] py-[10px] rounded-[12px] bg-[rgba(0,0,0,0.35)] border border-[#fff]/10 text-[#fff] outline-none" />
+                    <input
+                      value={form.name}
+                      onChange={(e) => setForm({ ...form, name: e.target.value })}
+                      placeholder="Name"
+                      className="px-[14px] py-[10px] rounded-[12px] bg-[rgba(0,0,0,0.35)]/30 border border-[#fff]/10 text-[#fff]"
+                    />
 
-                    <input placeholder="Email" className="px-[14px] py-[10px] rounded-[12px] bg-[rgba(0,0,0,0.35)] border border-[#fff]/10 text-[#fff] outline-none" />
+                    <input
+                      value={form.email}
+                      onChange={(e) => setForm({ ...form, email: e.target.value })}
+                      placeholder="Email"
+                      className="px-[14px] py-[10px] rounded-[12px] bg-[rgba(0,0,0,0.35)]/30 border border-[#fff]/10 text-[#fff]"
+                    />
 
-                    <textarea rows={4} placeholder="Message" className="px-[14px] py-[10px] rounded-[12px] bg-[rgba(0,0,0,0.35)] border border-[#fff]/10 text-[#fff] outline-none resize-none" />
+                    <textarea
+                      value={form.message}
+                      onChange={(e) => setForm({ ...form, message: e.target.value })}
+                      rows={4}
+                      placeholder="Message"
+                      className="px-[14px] py-[10px] rounded-[12px] bg-[rgba(0,0,0,0.35)]/30 border border-[#fff]/10 text-[#fff] resize-none"
+                    />
 
-                    <button className="mt-[10px] py-[10px] rounded-full bg-[linear-gradient(90deg,#a855f7,#ec4899)] text-black font-bold">
-                      Send Message
+                    <button
+                      type="submit"
+                      className="relative mt-[10px] py-[10px] px-[20px] rounded-full 
+  bg-[linear-gradient(90deg,#a855f7,#a855f7)] 
+  text-black font-bold overflow-hidden group 
+  shadow-[0_0_25px_rgba(168,85,247,0.4)] 
+  transition-all duration-300 hover:scale-[1.05]"
+                    >
+                      {/* text */}
+                      <span className="relative z-10">
+                        Send Message
+                      </span>
+
+                      {/* BASE glossy layer (always subtle shine) */}
+                      <span className="absolute inset-0 opacity-30 
+    bg-gradient-to-r from-transparent via-[#fff]/20 to-transparent 
+    skew-x-[-20deg]" />
+
+                      {/* HOVER moving casino shine */}
+                      <span className="absolute top-0 left-[-90%] w-[55%] h-full 
+    bg-gradient-to-r from-transparent via-white/50 to-transparent 
+    skew-x-[-20deg] 
+    group-hover:left-[140%] 
+    transition-all duration-700 ease-out" />
+
+                      {/* glow pulse on hover */}
+                      <span className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 
+    bg-white/10 blur-xl transition duration-300" />
                     </button>
-                  </div>
+
+
+                  </form>
                 </motion.div>
               )}
             </AnimatePresence>
@@ -131,16 +233,8 @@ export default function FooterSection() {
           </div>
 
           {/* IMAGE */}
-          <div
-            className={`
-              rounded-[24px] overflow-hidden border border-white/10
-              ${isMobile ? "w-[160px] h-[160px] mx-auto" : "w-[260px] h-[260px]"}
-            `}
-          >
-            <img
-              src="/images/vaibhav_gemini.png"
-              className="w-full h-full object-cover"
-            />
+          <div className={`${isMobile ? "w-[160px] h-[160px]" : "w-[260px] h-[260px]"} rounded-[24px] overflow-hidden border border-[#fff]/10`}>
+            <img src="/images/vaibhav_gemini.png" className="w-full h-full object-cover" />
           </div>
 
         </div>
@@ -148,7 +242,7 @@ export default function FooterSection() {
         {/* FOOTER */}
         <div
           className={`
-            border-t border-white/10 pt-[20px] text-white/60
+            border-t border-[#fff]/10 pt-[20px] text-[#fff]/60
             flex justify-between items-center
             ${isMobile ? "flex-col gap-[20px] text-center" : ""}
           `}
@@ -157,7 +251,7 @@ export default function FooterSection() {
           <p>
             Crafted with ❤️ by Vaibhav Soni • If you use light theme, we are not friends 😤
           </p>
-          
+
           <div className="flex gap-[10px] flex-wrap justify-center">
             {[
               { label: "Email", href: "mailto:vaibhavsoni044@gmail.com" },
@@ -169,12 +263,19 @@ export default function FooterSection() {
                 key={item.label}
                 href={item.href}
                 target="_blank"
-                className=" relative flex items-center justify-center w-[100px] h-[52px] rounded-full bg-[rgba(255,255,255,0.06)] border border-[rgba(255,255,255,0.15)] backdrop-blur-[12px] text-[15px] text-[rgba(255,255,255,0.75)] font-semibold no-underline transition-all duration-300 hover:scale-110 hover:text-black hover:bg-white hover:shadow-[0_0_25px_rgba(168,85,247,0.5)] "
+                className="relative overflow-hidden flex items-center justify-center w-[100px] h-[52px] rounded-full 
+  bg-[rgba(255,255,255,0.06)] border border-[rgba(255,255,255,0.15)] 
+  backdrop-blur-[12px] text-[15px] text-[rgba(255,255,255,0.75)] 
+  font-semibold no-underline transition-all duration-300 
+  hover:scale-110 hover:text-black hover:bg-white 
+  hover:shadow-[0_0_25px_rgba(168,85,247,0.5)]"
               >
                 {item.label}
 
-                {/* glow effect */}
-                <span className="absolute inset-0 rounded-full bg-[radial-gradient(circle,rgba(168,85,247,0.3),transparent)] opacity-0 hover:opacity-100 transition" />
+                {/* glossy moving shine */}
+                <span className="absolute top-0 left-[-75%] w-[50%] h-full 
+    bg-gradient-to-r from-transparent via-white/40 to-transparent 
+    skew-x-[-20deg] animate-shine" />
               </a>
             ))}
           </div>

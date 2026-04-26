@@ -2,6 +2,7 @@ import './globals.css'
 import Navbar from '@/components/common/Navbar'
 import Footer from '@/components/common/Footer'
 import { StarLayer, StarsBackground } from '@/components/animate-ui/components/backgrounds/stars'
+import { Toaster } from 'react-hot-toast'
 
 export const metadata = {
   title: "Vaibhav Portfolio",
@@ -31,6 +32,8 @@ export default function RootLayout({ children }) {
         </main>
 
         <Footer />
+                <Toaster position="top-right" />
+
       </body>
     </html>
   )
