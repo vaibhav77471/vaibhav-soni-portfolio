@@ -18,6 +18,7 @@ export default function FooterSection() {
 
   return (
     <section
+    id="contact"
       onMouseMove={handleMove}
       className="relative px-[80px] py-[100px] bg-black text-[#fff] overflow-hidden"
     >
