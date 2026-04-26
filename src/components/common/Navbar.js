@@ -44,7 +44,7 @@ export default function Navbar() {
                 <a
                   key={item}
                   href={`#${item.toLowerCase()}`}
-                  className="relative text-[#fff]/70 no-underline text-[14px] font-semibold transition-all duration-[300ms] hover:text-[#fff] hover:drop-shadow-[0_0_8px_rgba(168,85,247,0.8)]"
+                  className="relative text-[#fff]/70 no-underline text-[15px] font-semibold transition-all duration-[300ms] hover:text-[#fff] hover:drop-shadow-[0_0_8px_rgba(168,85,247,0.8)]"
                 >
                   {item}
 
@@ -57,7 +57,7 @@ export default function Navbar() {
 
             {/* Resume Button */}
             <a
-              href="/resume.pdf"
+              href="/vaibhav_Soni_CV.pdf"
               download
               className="relative no-underline overflow-hidden px-[14px] py-[7px] rounded-[999px] bg-[rgba(255,255,255,0.08)] backdrop-blur-[12px] border border-[rgba(255,255,255,0.2)] text-[#fff] text-[14px] font-semibold transition-all duration-[300ms] hover:scale-[1.05] hover:text-black hover:border-transparent hover:shadow-[0_0_25px_rgba(168,85,247,0.6)]"
             >
@@ -100,7 +100,7 @@ export default function Navbar() {
           ))}
 
           <a
-            href="/resume.pdf"
+            href="/vaibhav_Soni_CV.pdf"
             download
             className="mt-[10px] w-[100px] text-center py-[10px] rounded-[999px] bg-[rgba(255,255,255,0.1)] border border-[rgba(255,255,255,0.2)] text-[#fff] font-semibold"
           >
