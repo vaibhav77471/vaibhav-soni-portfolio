@@ -13,21 +13,24 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className="text-[#fff] py-[0] p-[0] m-[0] bg-transparent relative overflow-x-hidden">
+      <body className="text-[#fff] m-[0] bg-transparent relative overflow-x-hidden">
 
-        {/* 🔥 Gradient Background (IMPORTANT) */}
+        {/* Background */}
         <div className="fixed inset-0 -z-[20] bg-gradient-to-b from-[#0f172a] via-[#020617] to-black" />
 
-        {/* ⭐ Stars */}
+        {/* Stars */}
         <StarsBackground
           className="fixed inset-0 w-full h-full -z-[100] pointer-events-none"
           starColor="#fff"
         />
 
         <Navbar />
-        {children}
-        <Footer />
 
+        <main className=" pt-[50px] px-[20px] md:px-[40px] max-w-[1200px] mx-auto relative z-10">
+          {children}
+        </main>
+
+        <Footer />
       </body>
     </html>
   )
