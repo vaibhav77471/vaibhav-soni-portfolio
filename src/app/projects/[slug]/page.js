@@ -1,14 +1,11 @@
 import { projects } from "@/data/projects";
 
 export default async function ProjectPage({ params }) {
-  // 🔥 VERY IMPORTANT FIX
   const resolvedParams = await params;
 
   const slug = Array.isArray(resolvedParams?.slug)
     ? resolvedParams.slug[0]
     : resolvedParams.slug;
-
-  console.log("Slug:", slug); // debug
 
   const project = projects.find(
     (p) => p.slug.toLowerCase() === slug?.toLowerCase()
@@ -16,138 +13,155 @@ export default async function ProjectPage({ params }) {
 
   if (!project) {
     return (
-      <div className="p-20 text-white text-center text-xl">
-        Project Not Found
+      <div className="min-h-screen bg-black flex items-center justify-center text-white text-2xl tracking-[2px]">
+        🎰 PROJECT NOT FOUND
       </div>
     );
   }
 
-
-  // 🔥 Detailed content
-  const details = {
-    "casino-lobby": {
-      problem:
-        "Building a scalable real-time casino lobby with dynamic game loading.",
-      approach:
-        "Used Next.js App Router, Zustand for state, and iframe-based rendering for games.",
-      flow:
-        "Login → Casino Lobby → Select Game → Load Game via iframe",
-    },
-
-    "keno-game": {
-      problem: "Designing an intuitive betting UI for Keno game.",
-      approach:
-        "Built reusable UI components using React and Tailwind with animations.",
-      flow: "Select numbers → Place bet → View results",
-    },
-
-    "blackjack-game": {
-      problem: "Real-time multiplayer blackjack UI.",
-      approach:
-        "Used Socket.io for live updates and optimized UI rendering.",
-      flow: "Join table → Play cards → Get result",
-    },
-
-    "roulette-game": {
-      problem: "Interactive roulette betting experience.",
-      approach:
-        "Implemented smooth animations with Framer Motion.",
-      flow: "Place bet → Spin wheel → Result display",
-    },
-
-    "recipe-finder": {
-      problem: "Users struggle to find recipes quickly.",
-      approach:
-        "Integrated external APIs with responsive React UI.",
-      flow: "Search → View recipes → Explore details",
-    },
-
-    "dev-collab": {
-      problem: "Lack of simple dev collaboration tools.",
-      approach:
-        "Built MERN app with authentication and real-time features.",
-      flow: "Login → Create project → Collaborate",
-    },
-
-    "tic-tac-toe": {
-      problem: "Simple interactive game implementation.",
-      approach:
-        "Built with vanilla JavaScript and efficient game logic.",
-      flow: "Play → Detect winner → Restart",
-    },
-  };
-
-  const info = details[slug] || {};
-
   return (
-    <div className="min-h-screen bg-black text-white px-10 py-2 top-[50px] max-w-4xl mx-auto">
+    <div className="min-h-screen bg-[radial-gradient(circle_at_top,#111827,#000000)] text-white px-[20px] md:px-[60px] py-[60px]">
 
-      {/* Title */}
-      <h1 className="text-4xl font-bold text-lime-400 mb-6">
-        {project.title}
-      </h1>
+      {/* Card Container */}
+      <div className="max-w-[900px] mx-auto bg-[rgba(255,255,255,0.04)] border border-[rgba(255,255,255,0.08)] backdrop-blur-[18px] rounded-[24px] shadow-[0_0_40px_rgba(0,255,128,0.08)] p-[24px] md:p-[40px]">
 
-      {/* Image */}
-      <img
-        src={project.image}
-        alt={project.title}
-        className="w-full h-[300px] object-cover rounded-xl mb-6"
-      />
+        {/* TITLE */}
+        <h1 className="text-[32px] md:text-[44px] font-[800] tracking-[2px] text-transparent bg-clip-text bg-[linear-gradient(90deg,#00ff88,#00c2ff,#a855f7)] mb-[20px] uppercase">
+          {project.title}
+        </h1>
 
-      {/* Description */}
-      <p className="text-lg text-white/80 mb-8">
-        {project.description}
-      </p>
-
-      {/* Problem */}
-      {info.problem && (
-        <div className="mb-6">
-          <h3 className="text-xl font-semibold mb-2">Problem</h3>
-          <p className="text-white/70">{info.problem}</p>
+        {/* IMAGE */}
+        <div className="overflow-hidden rounded-[18px] border border-[rgba(255,255,255,0.12)] shadow-[0_0_30px_rgba(0,255,200,0.12)]">
+          <img
+            src={project.image}
+            alt={project.title}
+            className="w-full h-[260px] md:h-[360px] object-cover hover:scale-[1.05] transition duration-500"
+          />
         </div>
-      )}
 
-      {/* Approach */}
-      {info.approach && (
-        <div className="mb-6">
-          <h3 className="text-xl font-semibold mb-2">Approach</h3>
-          <p className="text-white/70">{info.approach}</p>
+        {/* DESCRIPTION */}
+        <p className="mt-[20px] text-[15px] md:text-[16px] text-white/70 leading-[1.7] border-l-[3px] border-[rgba(0,255,136,0.5)] pl-[12px]">
+          {project.description}
+        </p>
+
+        {/* GRID SECTIONS */}
+        <div className="mt-[30px] space-y-[24px]">
+
+          {/* PROBLEM */}
+          {project.problem && (
+            <div className="p-[16px] rounded-[16px] bg-[rgba(0,0,0,0.4)] border border-[rgba(255,255,255,0.08)] shadow-[inset_0_0_20px_rgba(0,255,150,0.05)]">
+              <h3 className="text-[18px] font-[700] text-[rgb(0,255,150)] tracking-[1px] mb-[8px]">
+                PROBLEM
+              </h3>
+              <p className="text-white/70 text-[14px] leading-[1.6]">
+                {project.problem}
+              </p>
+            </div>
+          )}
+
+          {/* APPROACH */}
+          {project.approach && (
+            <div className="p-[16px] rounded-[16px] bg-[rgba(0,0,0,0.4)] border border-[rgba(255,255,255,0.08)] shadow-[inset_0_0_20px_rgba(168,85,247,0.08)]">
+              <h3 className="text-[18px] font-[700] text-[rgb(168,85,247)] tracking-[1px] mb-[8px]">
+                APPROACH
+              </h3>
+              <p className="text-white/70 text-[14px] leading-[1.6]">
+                {project.approach}
+              </p>
+            </div>
+          )}
+
+          {/* FLOW */}
+          {project.flow && (
+            <div className="p-[16px] rounded-[16px] bg-[rgba(0,0,0,0.4)] border border-[rgba(255,255,255,0.08)] shadow-[inset_0_0_20px_rgba(0,194,255,0.08)]">
+              <h3 className="text-[18px] font-[700] text-[rgb(0,194,255)] tracking-[1px] mb-[8px]">
+                FLOW
+              </h3>
+              <p className="text-white/70 text-[14px] leading-[1.6]">
+                {project.flow}
+              </p>
+            </div>
+          )}
+
+          {/* TECH STACK */}
+          <div>
+            <h3 className="text-[18px] font-[700] text-[rgb(255,215,0)] tracking-[1px] mb-[12px]">
+              TECH STACK
+            </h3>
+
+            <div className="flex flex-wrap gap-[10px]">
+              {project.tech.map((t, i) => (
+                <span
+                  key={i}
+                  className="px-[12px] py-[6px] text-[12px] tracking-[1px] rounded-[999px]
+                  bg-[rgba(255,215,0,0.08)]
+                  border border-[rgba(255,215,0,0.25)]
+                  text-[rgb(255,215,0)]
+                  shadow-[0_0_10px_rgba(255,215,0,0.15)]"
+                >
+                  {t}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          {/* HIGHLIGHTS */}
+          {project.highlights && (
+            <div>
+              <h3 className="text-[18px] font-[700] text-[rgb(0,255,136)] tracking-[1px] mb-[12px]">
+                HIGHLIGHTS
+              </h3>
+
+              <ul className="space-y-[8px]">
+                {project.highlights.map((h, i) => (
+                  <li
+                    key={i}
+                    className="text-[13px] text-white/70 flex items-center gap-[10px]"
+                  >
+                    <span className="w-[6px] h-[6px] bg-[rgb(0,255,136)] rounded-full shadow-[0_0_8px_rgb(0,255,136)]" />
+                    {h}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
         </div>
-      )}
 
-      {/* Tech Stack */}
-      <div className="mb-6">
-        <h3 className="text-xl font-semibold mb-2">Tech Stack</h3>
-        <div className="flex flex-wrap gap-3">
-          {project.tech.map((t, i) => (
-            <span
-              key={i}
-              className="bg-white/10 px-3 py-1 rounded-full text-sm"
+        {/* BUTTONS */}
+        <div className="mt-[40px] flex flex-wrap gap-[14px]">
+
+          {project.liveUrl && (
+            <a
+              href={project.liveUrl}
+              target="_blank"
+              className="px-[22px] py-[10px] rounded-[999px] bg-[linear-gradient(90deg,#00ff88,#00c2ff)] text-black font-[700] no-underline tracking-[1px] shadow-[0_0_25px_rgba(0,255,200,0.25)] hover:scale-[1.05] transition"
             >
-              {t}
-            </span>
-          ))}
+              ▶ LIVE
+            </a>
+          )}
+
+          {project.github && (
+            <a
+              href={project.github}
+              target="_blank"
+              className="relative no-underline inline-flex px-[22px] py-[10px] rounded-[999px] border border-[rgba(255,255,255,0.18)] text-white/80 tracking-[1px] overflow-hidden transition duration-300 hover:text-white hover:scale-[1.05]"
+            >
+
+              {/* 🔥 animated glow background */}
+              <span className="absolute inset-0 bg-[radial-gradient(circle_at_top,#00ff8830,#00000000)] opacity-0 hover:opacity-100 transition duration-300" />
+
+              {/* ✨ moving shine */}
+              <span className="absolute inset-0 -translate-x-full hover:translate-x-full transition-transform duration-700 bg-[linear-gradient(120deg,transparent,rgba(255,255,255,0.25),transparent)]" />
+
+              {/* text */}
+              <span className="relative z-10">
+                GITHUB
+              </span>
+
+            </a>
+          )}
         </div>
       </div>
-
-      {/* Flow */}
-      {info.flow && (
-        <div className="mb-6">
-          <h3 className="text-xl font-semibold mb-2">Flow</h3>
-          <p className="text-white/70">{info.flow}</p>
-        </div>
-      )}
-
-      {/* Live Button */}
-      {project.liveUrl && (
-        <a
-          href={project.liveUrl}
-          target="_blank"
-          className="inline-block mt-6 px-6 py-2 bg-lime-400 text-black rounded-full font-medium"
-        >
-          View Live Project →
-        </a>
-      )}
     </div>
   );
 }
