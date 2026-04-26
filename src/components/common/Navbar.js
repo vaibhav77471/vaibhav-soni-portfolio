@@ -14,12 +14,12 @@ export default function Navbar() {
   }, [])
 
   return (
-    <div className="fixed top-[0] left-[0] w-full z-[50]">
+    <div className="fixed top-[0] left-[0] w-[100vw] z-[50]">
 
       {/* 🌫️ Glass Layer */}
       <div className="absolute inset-[0] bg-[rgba(0,0,0,0.35)] backdrop-blur-[16px]" />
 
-      <nav className="relative max-w-[1200px] flex items-center justify-between h-[70px] px-[20px] md:px-[40px] mx-auto">
+      <nav className="relative max-w-[100%] flex items-center justify-between h-[70px] px-[20px] md:px-[40px] mx-auto">
 
         {/* 🔥 LEFT — Logo */}
         <div className="flex items-center gap-[12px] group">

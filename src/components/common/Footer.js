@@ -1,11 +1,24 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from "framer-motion"
 
 export default function FooterSection() {
   const [open, setOpen] = useState(false)
   const [mouse, setMouse] = useState({ x: 50, y: 50 })
+  const [isMobile, setIsMobile] = useState(false)
+
+  // ✅ detect screen width
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 900)
+    }
+
+    handleResize() // run initially
+    window.addEventListener("resize", handleResize)
+
+    return () => window.removeEventListener("resize", handleResize)
+  }, [])
 
   const handleMove = (e) => {
     const rect = e.currentTarget.getBoundingClientRect()
@@ -18,29 +31,32 @@ export default function FooterSection() {
 
   return (
     <section
-    id="contact"
+      id="contact"
       onMouseMove={handleMove}
       className="relative px-[80px] py-[100px] bg-black text-[#fff] overflow-hidden"
     >
 
-      {/* Background effects */}
-      <div className="absolute inset-0 pointer-events-none opacity-[0.08] bg-[radial-gradient(circle,[#fff]_1px,transparent_1px)] bg-[size:26px_26px]" />
+      {/* background */}
+      <div className="absolute inset-0 pointer-events-none opacity-[0.08] bg-[radial-gradient(circle,#fff_1px,transparent_1px)] bg-[size:26px_26px]" />
       <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_center,transparent_40%,rgba(0,0,0,0.8))]" />
 
       {/* MAIN CARD */}
       <div className="relative z-[10] max-w-6xl mx-auto rounded-[32px] border border-[rgba(255,255,255,0.12)] bg-[rgba(5,7,13,0.75)] backdrop-blur-[18px] p-[60px] flex flex-col gap-[40px] shadow-[0_0_80px_rgba(0,0,0,0.6)]">
 
         {/* TOP SECTION */}
-        <div className="flex flex-row justify-between gap-[40px]">
+        <div
+          className={`flex gap-[40px] ${isMobile ? "flex-col-reverse items-center" : "flex-row justify-between"
+            }`}
+        >
 
-          {/* LEFT */}
-          <div className="flex-1">
+          {/* LEFT CONTENT */}
+          <div className={`flex-1 ${isMobile ? "text-center" : ""}`}>
 
             <h2 className="text-[42px] font-light mb-[30px]">
               How I can help <span className="italic font-serif">you?</span>
             </h2>
 
-            <div className="flex flex-col md:flex-row gap-[40px] mb-[40px]">
+            <div className={`flex gap-[40px] mb-[40px] ${isMobile ? "flex-col items-center" : "flex-row"}`}>
 
               <div>
                 <h3 className="font-bold text-[18px] mb-[10px]">
@@ -65,33 +81,27 @@ export default function FooterSection() {
 
             </div>
 
-            {/* BUTTON (HIDES WHEN OPEN) */}
+            {/* BUTTON */}
             {!open && (
               <button
                 onClick={() => setOpen(true)}
-                className="relative overflow-hidden w-full rounded-[999px] py-[16px] bg-[rgba(255,255,255,0.06)] border border-[rgba(255,255,255,0.15)] backdrop-blur-[12px] text-[#fff]/80 font-semibold transition-all duration-300 hover:scale-[1.03] hover:text-black hover:shadow-[0_0_30px_rgba(168,85,247,0.6)]"
+                className="relative overflow-hidden w-full rounded-[999px] py-[16px] bg-[rgba(255,255,255,0.06)] border border-[rgba(255,255,255,0.15)] backdrop-blur-[12px] text-[#fff]/80 font-semibold transition-all duration-300 hover:scale-[1.03] hover:text-black"
               >
                 Get In Touch →
-
-                <span className="absolute inset-0 bg-[linear-gradient(90deg,rgba(168,85,247,0.3),rgba(236,72,153,0.3))] opacity-0 hover:opacity-100 transition" />
-                <span className="absolute top-0 left-[-120%] w-full h-full bg-[linear-gradient(90deg,transparent,rgba(255,255,255,0.4),transparent)] skew-x-[20deg] transition-all duration-700 hover:left-[120%]" />
               </button>
             )}
 
-            {/* INLINE FORM (SHOW WHEN OPEN) */}
+            {/* FORM */}
             <AnimatePresence>
               {open && (
                 <motion.div
                   initial={{ opacity: 0, y: 30, scale: 0.95 }}
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   exit={{ opacity: 0, y: 30, scale: 0.95 }}
-                  transition={{ duration: 0.35, ease: "easeOut" }}
-                  className="mt-[30px] relative rounded-[24px] border border-[rgba(255,255,255,0.12)] bg-[rgba(11,15,23,0.75)] backdrop-blur-[22px] p-[22px] overflow-hidden shadow-[0_0_60px_rgba(0,0,0,0.6)]"
+                  transition={{ duration: 0.35 }}
+                  className="mt-[30px] rounded-[24px] border border-[rgba(255,255,255,0.12)] bg-[rgba(11,15,23,0.75)] backdrop-blur-[22px] p-[22px]"
                 >
-                  {/* shine layer */}
-                  <div className="absolute inset-0 bg-[linear-gradient(120deg,transparent,rgba(255,255,255,0.08),transparent)] skew-x-[20deg] animate-[shine_4s_linear_infinite] pointer-events-none" />
-
-                  <div className="flex items-center justify-between mb-[18px] relative z-10">
+                  <div className="flex justify-between mb-[18px]">
                     <h3 className="text-[22px] font-light">Send Message</h3>
 
                     <button
@@ -121,22 +131,34 @@ export default function FooterSection() {
           </div>
 
           {/* IMAGE */}
-          <div className="w-[260px] h-[260px] rounded-[24px] overflow-hidden border border-[rgba(255,255,255,0.1)]">
+          <div
+            className={`
+              rounded-[24px] overflow-hidden border border-white/10
+              ${isMobile ? "w-[160px] h-[160px] mx-auto" : "w-[260px] h-[260px]"}
+            `}
+          >
             <img
-              src="/images/vaibhav.webp"
+              src="/images/vaibhav_gemini.png"
               className="w-full h-full object-cover"
             />
           </div>
 
         </div>
 
-        {/* DIVIDER */}
-        <div className="border-t border-[rgba(255,255,255,0.1)] pt-[20px] flex justify-between text-[#fff]/60">
+        {/* FOOTER */}
+        <div
+          className={`
+            border-t border-white/10 pt-[20px] text-white/60
+            flex justify-between items-center
+            ${isMobile ? "flex-col gap-[20px] text-center" : ""}
+          `}
+        >
 
-          <p>Vaibhav Soni © 2025</p>
-
-          <div className="flex gap-[10px] text-[20px] flex-wrap">
-
+          <p>
+            Crafted with ❤️ by Vaibhav Soni • If you use light theme, we are not friends 😤
+          </p>
+          
+          <div className="flex gap-[10px] flex-wrap justify-center">
             {[
               { label: "Email", href: "mailto:vaibhavsoni044@gmail.com" },
               { label: "LinkedIn", href: "https://linkedin.com" },
@@ -155,7 +177,6 @@ export default function FooterSection() {
                 <span className="absolute inset-0 rounded-full bg-[radial-gradient(circle,rgba(168,85,247,0.3),transparent)] opacity-0 hover:opacity-100 transition" />
               </a>
             ))}
-
           </div>
 
         </div>

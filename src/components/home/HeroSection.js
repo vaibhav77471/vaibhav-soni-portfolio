@@ -23,7 +23,7 @@ export default function HeroSection() {
         <h1 className="hero-title">HI! I'M</h1>
 
         <div className="hero-avatar">
-          <img src="/images/vaibhav.webp" alt="Vaibhav Soni" />
+          <img src="/images/vaibhav_gemini.png" alt="Vaibhav Soni" />
         </div>
 
         <h2 className="hero-name">VAIBHAV</h2>

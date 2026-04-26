@@ -26,7 +26,7 @@ export default function RootLayout({ children }) {
 
         <Navbar />
 
-        <main className=" pt-[50px] px-[20px] md:px-[40px] max-w-[1200px] mx-auto relative z-10">
+        <main className=" pt-[50px] px-[20px] md:px-[40px] max-w-[100%] mx-auto relative z-10">
           {children}
         </main>
 
