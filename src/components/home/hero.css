@@ -1,0 +1,248 @@
+.hero {
+  position: relative;
+  width: 100%;
+  min-height: 100%;
+  background: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  margin-top: -80px;
+
+
+}
+
+.hero-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ================= HERO TEXT ================= */
+
+.hero-title {
+  font-size: 12vw;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: grey;
+  line-height: 1;
+  transform: translateY(40px);
+  user-select: none;
+}
+
+/* ================= AVATAR ================= */
+
+.hero-avatar {
+  position: relative;
+  bottom: 160px;
+  width: 300px;
+  height: 300px;
+  border-radius: 3.5rem;
+  overflow: hidden;
+  background: #18181b;
+  border: 1px solid rgba(255,255,255,0.05);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+  z-index: 20;
+}
+
+.hero-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ================= NAME ================= */
+
+.hero-name {
+  position: absolute;
+  bottom: -160px;
+  font-size: 14vw;
+  font-weight: 900;
+  text-transform: uppercase;
+  color: grey;
+  letter-spacing: 0.1em;
+  line-height: 1;
+  text-align: center;
+  z-index: 999;
+}
+
+/* ================= TAGLINE ================= */
+
+.hero-tagline {
+  position: absolute;
+  bottom: -20px;
+  font-size: 20px;
+  color: white;
+  text-align: center;
+  max-width: 600px;
+  letter-spacing: 0.05em;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (min-width: 350px) and (max-width: 400px) {
+
+  .hero-title {
+    font-size: 20vw;
+    transform: translateY(-30px) !important;
+  }
+
+  .hero-avatar {
+    display: flex;
+    width: 160px;
+    height: 160px;
+    
+  }
+
+  .hero-name {
+    font-size: 12vw !important;
+    transform: translate(-50%, -80%);
+    margin-left: 230px ;
+        
+
+  }
+
+  .hero-tagline {
+    font-size: 15px;
+    max-width: 260px;
+    letter-spacing: 0px;
+  }
+}
+
+@media (min-width: 400px) and (max-width: 600px) {
+
+  .hero-title {
+    font-size: 20vw;
+    transform: translateY(-30px) !important;
+  }
+
+  .hero-avatar {
+    display: flex;
+    width: 160px;
+    height: 160px;
+    
+  }
+
+  .hero-name {
+    font-size: 12vw !important;
+    transform: translate(-50%, -80%);
+    margin-left: 250px ;
+        
+
+  }
+
+  .hero-tagline {
+    font-size: 15px;
+    max-width: 260px;
+    letter-spacing: 0px;
+  }
+}
+
+/* 📱 Mobile */
+@media (max-width: 767px) {
+
+    .hero{
+        min-height: 500px;
+        margin-top: 50px;
+    }
+  .hero-title {
+    font-size: 12vw;
+    transform: translateY(20px);
+  }
+
+  .hero-avatar {
+    width: 150px;
+    height: 150px;
+    bottom: 80px;
+  }
+
+  .hero-name {
+    font-size: 10vw;
+    bottom:-20px;
+    color: grey;
+    z-index: 999;
+  }
+
+  .hero-tagline {
+    font-size: 14px;
+    max-width: 280px;
+    bottom: -10px;
+  }
+}
+
+/* 📟 Tablet */
+@media (min-width: 768px) and (max-width: 1023px) {
+
+  .hero-title {
+    font-size: 14vw;
+  }
+
+  .hero-avatar {
+    position:relative;
+    width: 200px;
+    height: 200px;
+    bottom: 80px;
+  }
+
+  .hero-name {
+    position:absolute;
+    font-size: 16vw;
+    bottom: -100px;
+    color:grey;
+    z-index: 999;
+  }
+
+  .hero-tagline {
+    font-size: 14px;
+    bottom: -15px;
+    width: 100vw;
+
+
+  }
+}
+
+/* 🖥️ Large screens */
+@media (min-width: 1024px) and (max-width: 1440px) {
+  .hero-title {
+    font-size: 10vw;
+  }
+.hero-avatar {
+  position: relative;   /* IMPORTANT */
+  width: 260px;
+  height: 260px;
+  margin-top: 70px;
+  border-radius: 3.5rem;
+  overflow: hidden;
+}
+
+/* image stays same */
+.hero-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* NAME OVER IMAGE */
+.hero-name {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -30%);
+  font-size: 12vw;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  z-index:9999 !important;
+  pointer-events: none;
+}
+
+/* .hero-tagline {
+    font-size: 14px;
+    bottom: -5px !important;
+    width: 100vw;
+
+
+  } */
+}
