@@ -38,22 +38,43 @@ export default function ProjectCard({ project }) {
           {/* Footer */}
           <div className="flex items-center gap-[12px] mt-auto">
 
-            {/* 🔥 FIXED BUTTON */}
+            {/* 🔥 DETAILS BUTTON */}
             <button
               onClick={() => router.push(`/projects/${project.slug}`)}
-              className="px-[14px] py-[6px] bg-[#000000] rounded-full border border-[#fff]/20 text-[13px] text-[#fff]/80 hover:bg-lime-400 hover:text-black transition"
+              className=" relative overflow-hidden px-[14px] py-[6px] rounded-[999px] border border-[rgba(255,255,255,0.2)] bg-[rgba(0,0,0,0.6)] backdrop-blur-[12px] text-[13px] text-[rgba(255,255,255,0.8)] transition-all duration-[300ms] hover:scale-[1.05] hover:text-black hover:border-transparent hover:shadow-[0_0_25px_rgba(168,85,247,0.6)] "
             >
-              Details
+              <span className="relative z-[10]">Details</span>
+
+              {/* Glow Layer */}
+              <span
+                className=" absolute inset-[0] bg-[linear-gradient(90deg,rgba(168,85,247,0.3),rgba(236,72,153,0.3))] opacity-[0] hover:opacity-[1] transition duration-[300ms] "
+              />
+
+              {/* Shine Sweep */}
+              <span
+                className=" absolute top-[0] left-[-120%] w-[100%] h-[100%] bg-[linear-gradient(90deg,transparent,rgba(255,255,255,0.4),transparent)] skew-x-[20deg] transition-all duration-[700ms] hover:left-[120%] "
+              />
             </button>
 
+            {/* 🔗 LIVE BUTTON */}
             {project.liveUrl && (
               <a
                 href={project.liveUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-[14px] py-[6px] rounded-full border border-[#fff]/20 text-[13px] text-[#fff]/80 hover:bg-lime-400 hover:text-black transition"
+                className=" relative no-underline overflow-hidden px-[14px] py-[6px] rounded-[999px] border border-[rgba(255,255,255,0.2)] bg-[rgba(0,0,0,0.6)] backdrop-blur-[12px] text-[13px] text-[rgba(255,255,255,0.8)] transition-all duration-[300ms] hover:scale-[1.05] hover:text-black hover:border-transparent hover:shadow-[0_0_25px_rgba(34,197,94,0.6)] "
               >
-                Live →
+                <span className="relative z-[10]">Live →</span>
+
+                {/* Glow Layer (green vibe for live) */}
+                <span
+                  className=" absolute inset-[0] bg-[linear-gradient(90deg,rgba(34,197,94,0.3),rgba(132,204,22,0.3))] opacity-[0] hover:opacity-[1] transition duration-[300ms] "
+                />
+
+                {/* Shine Sweep */}
+                <span
+                  className=" absolute top-[0] left-[-120%] w-[100%] h-[100%] bg-[linear-gradient(90deg,transparent,rgba(255,255,255,0.4),transparent)] skew-x-[20deg] transition-all duration-[700ms] hover:left-[120%] "
+                />
               </a>
             )}
 
