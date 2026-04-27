@@ -9,8 +9,8 @@ export const projects = [
       "https://images.unsplash.com/photo-1706129867447-b4f156c46641?q=80&w=1974&auto=format&fit=crop",
     tech: ["Next.js", "React Query", "Zustand", "Tailwind", "Shadcn UI"],
     category: "Professional",
-    liveUrl: "",
-    github: "",
+    liveUrl: "https://casino-lobby-mnf3plcvp-vaibhav77471s-projects.vercel.app/en",
+    github: "https://github.com/vaibhav77471/CasinoLobby",
 
     problem:
       "Building a scalable real-time casino lobby with dynamic game loading.",
