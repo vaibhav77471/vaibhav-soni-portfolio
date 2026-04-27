@@ -17,7 +17,7 @@ const inter = Inter({
 
 export default function HeroSection() {
   return (
-    <section className="hero" id="home">
+    <section className="hero scroll-mt-[80px] md:scroll-mt-[100px]" id="home">
       <div className="hero-wrapper">
 
         <h1 className="hero-title">HI! I'M</h1>

@@ -34,9 +34,9 @@ export default function ProjectGrid() {
   return (
     <section
       id="projects"
-      className="p-[20px] flex flex-col items-center bg-transparent backdrop-blur-md"
+      className="p-[20px] flex flex-col items-center bg-transparent backdrop-blur-md scroll-mt-[80px] md:scroll-mt-[100px]"
     >
-      <h1 className="text-[50px] font-bold text-[#fff] mb-10">
+      <h1 className="text-[50px] font-bold text-[#fff] mb-10 text-center">
         Featured Projects
       </h1>
 

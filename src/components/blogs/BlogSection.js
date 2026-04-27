@@ -32,7 +32,7 @@ export default function BlogSection() {
   return (
     <section
       id="blogs"
-      className="min-h-screen px-[80px] py-[100px] bg-transparent backdrop-blur-[12px]"
+      className="min-h-screen bg-transparent backdrop-blur-[12px] px-0 sm:px-4 md:px-6 lg:px-8 scroll-mt-[80px] md:scroll-mt-[100px]"
     >
       {/* Heading */}
       <h2 className="text-[42px] font-bold text-[#fff] mb-[40px] text-center">
