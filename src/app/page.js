@@ -6,10 +6,10 @@ import BlogSection from '@/components/blogs/BlogSection'
 
 export default function Home() {
   return (
-    <main>
+    <main className="flex flex-col items-center justify-start min-h-screen bg-transparent backdrop-blur-md">
       <HeroSection />
-      <ProjectGrid />
       <AboutSection />
+      <ProjectGrid />
       <SkillsScroller />
       <BlogSection />
     </main>

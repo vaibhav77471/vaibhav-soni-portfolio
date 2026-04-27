@@ -1,34 +1,115 @@
 'use client'
 
+import { useState, useEffect } from 'react'
+
 export default function Navbar() {
+  const [open, setOpen] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768)
+    check()
+    window.addEventListener('resize', check)
+    return () => window.removeEventListener('resize', check)
+  }, [])
+
   return (
-    <div className="fixed top-6 left-1/2 -translate-x-1/2 z-50 pt-200px">
-      <nav className="flex items-center gap-8 px-6 py-3 rounded-full 
-        bg-[#0b1a0f]/80 backdrop-blur-md border border-[#1f3a2a]
-        shadow-lg">
+    <div className="fixed top-[0] left-[0] w-[100vw] z-[50]">
 
-        {/* Logo */}
-        <div className="flex items-center gap-2 font-semibold">
-          <div className="w-6 h-6 bg-lime-400 rounded-full flex items-center justify-center text-black font-bold">
-            V
+      {/* 🌫️ Glass Layer */}
+      <div className="absolute inset-[0] bg-[rgba(0,0,0,0.35)] backdrop-blur-[16px]" />
+
+      <nav className="relative max-w-[100%] flex items-center justify-between h-[70px] px-[20px] md:px-[40px] mx-auto">
+
+        {/* 🔥 LEFT — Logo */}
+        <div className="flex items-center gap-[12px] group">
+          <div className="w-[40px] h-[40px] rounded-full bg-[rgba(255,255,255,0.08)] backdrop-blur-[12px] border border-[rgba(255,255,255,0.2)] flex items-center justify-center shadow-[0_0_15px_rgba(168,85,247,0.3)] transition-all duration-[300ms] group-hover:shadow-[0_0_25px_rgba(168,85,247,0.6)] group-hover:scale-[1.05]">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+              <path d="M13 10V3L4 14H11V21L20 10H13Z" fill="#fff" />
+            </svg>
           </div>
-          <span>Vaibhav</span>
+
+          <span className="text-[#fff] text-[18px] md:text-[20px] font-bold drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]">
+            Vaibhav Soni
+          </span>
         </div>
 
-        {/* Links */}
-        <div className="flex gap-6 text-sm text-gray-300">
-          <a href="#home" className="hover:text-white">Home</a>
-          <a href="#projects" className="hover:text-white">Projects</a>
-          <a href="#about" className="hover:text-white">About me</a>
-          <a href="#contact" className="hover:text-white">Reach me</a>
-        </div>
+        {/* 🔥 DESKTOP LINKS (ONLY IF NOT MOBILE) */}
+        {!isMobile && (
+          <div className="flex items-center gap-[28px]">
 
-        {/* Resume Button */}
-        <button className="ml-4 px-4 py-2 rounded-full border border-lime-400 text-lime-400 hover:bg-lime-400 hover:text-black transition">
-          Resume ↓
-        </button>
+            <div className="flex items-center gap-[22px]">
+
+              {['Home', 'Projects', 'About', 'Blogs', 'Skills', 'Contact'].map((item) => (
+                <a
+                  key={item}
+                  href={`#${item.toLowerCase()}`}
+                  className="relative text-[#fff]/70 no-underline text-[15px] font-semibold transition-all duration-[300ms] hover:text-[#fff] hover:drop-shadow-[0_0_8px_rgba(168,85,247,0.8)]"
+                >
+                  {item}
+
+                  {/* underline glow (FIXED: removed group bug) */}
+                  <span className="absolute left-[0] bottom-[-4px] w-[0%] h-[1px] bg-[linear-gradient(90deg,rgba(168,85,247,0.8),rgba(236,72,153,0.8))] transition-all duration-[300ms] hover:w-[100%]" />
+                </a>
+              ))}
+
+            </div>
+
+            {/* Resume Button */}
+            <a
+              href="/vaibhav_Soni_CV.pdf"
+              download
+              className="relative no-underline overflow-hidden px-[14px] py-[7px] rounded-[999px] bg-[rgba(255,255,255,0.08)] backdrop-blur-[12px] border border-[rgba(255,255,255,0.2)] text-[#fff] text-[14px] font-semibold transition-all duration-[300ms] hover:scale-[1.05] hover:text-black hover:border-transparent hover:shadow-[0_0_25px_rgba(168,85,247,0.6)]"
+            >
+              Resume
+
+              <span className="absolute inset-[0] bg-[linear-gradient(90deg,rgba(168,85,247,0.3),rgba(236,72,153,0.3))] opacity-[0] hover:opacity-[1] transition duration-[300ms]" />
+              <span className="absolute top-[0] left-[-120%] w-[100%] h-[100%] bg-[linear-gradient(90deg,transparent,rgba(255,255,255,0.4),transparent)] skew-x-[20deg] transition-all duration-[700ms] hover:left-[120%]" />
+            </a>
+
+          </div>
+        )}
+
+        {/* 🔥 MOBILE BURGER (ONLY < 768px) */}
+        {isMobile && (
+          <button
+            onClick={() => setOpen(!open)}
+            className="relative overflow-hidden w-[44px] h-[44px] flex flex-col items-center justify-center gap-[5px] rounded-[14px] bg-[rgba(255,255,255,0.08)] backdrop-blur-[16px] border border-[rgba(255,255,255,0.2)] transition-all duration-[300ms] hover:scale-[1.1] active:scale-[0.95]"
+          >
+            <span className="w-[22px] h-[2px] bg-[#fff]" />
+            <span className="w-[22px] h-[2px] bg-[#fff]" />
+            <span className="w-[22px] h-[2px] bg-[#fff]" />
+          </button>
+        )}
 
       </nav>
+
+      {/* 🔥 MOBILE MENU */}
+      {isMobile && open && (
+        <div className="bg-[rgba(0,0,0,0.7)] backdrop-blur-[18px] border-t border-[rgba(255,255,255,0.1)] px-[20px] py-[20px] justify-center items-center flex flex-col gap-[16px]">
+
+          {['Home', 'Projects', 'About', 'Blogs', 'Skills', 'Contact'].map((item) => (
+            <a
+              key={item}
+              href={`#${item.toLowerCase()}`}
+              onClick={() => setOpen(false)}
+              className="text-[#fff]/80 no-underline text-[16px] font-semibold hover:text-[#fff] transition"
+            >
+              {item}
+            </a>
+          ))}
+
+          <a
+            href="/vaibhav_Soni_CV.pdf"
+            download
+            className="mt-[10px] w-[100px] text-center py-[10px] rounded-[999px] bg-[rgba(255,255,255,0.1)] border border-[rgba(255,255,255,0.2)] text-[#fff] font-semibold"
+          >
+            Resume
+          </a>
+
+        </div>
+      )}
+
     </div>
   )
 }
