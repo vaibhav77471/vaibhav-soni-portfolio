@@ -168,7 +168,7 @@
   .hero-tagline {
     font-size: 14px;
     max-width: 280px;
-    bottom: -10px;
+    /* bottom: -10px; */
   }
 }
 

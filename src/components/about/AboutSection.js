@@ -26,8 +26,7 @@ export default function AboutSection() {
 
       {/* MAIN CARD */}
       <div
-        className="relative w-[92%] max-w-6xl rounded-[40px] p-[70px] border border-[#fff]/10 bg-[#fff]/5 backdrop-blur-[25px] shadow-[0_0_120px_rgba(0,0,0,0.7)]"
-        style={{
+        className="relative w-[92%] max-w-6xl rounded-[40px] p-[5px] md:p-[70px] border border-[#fff]/10 bg-[#fff]/5 backdrop-blur-[25px] shadow-[0_0_120px_rgba(0,0,0,0.7)]" style={{
           background: `radial-gradient(circle at ${mouse.x}% ${mouse.y}%, rgba(168,85,247,0.12), transparent 40%), rgba(255,255,255,0.04)`
         }}
       >

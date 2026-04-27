@@ -91,8 +91,7 @@ export default function FooterSection() {
     <section
       id="contact"
       onMouseMove={handleMove}
-      className="relative px-[80px] py-[100px] bg-[rgba(0,0,0,0.35)] text-[#fff] overflow-hidden"
-    >
+      className="relative px-[10px] md:px-[80px] py-[100px] bg-[rgba(0,0,0,0.35)] text-[#fff] overflow-hidden"    >
 
       {/* background */}
       <div className="absolute inset-0 pointer-events-none opacity-[0.08] bg-[radial-gradient(circle,#fff_1px,transparent_1px)] bg-[size:26px_26px]" />
