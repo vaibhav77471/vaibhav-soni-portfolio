@@ -106,32 +106,32 @@ export const projects = [
   },
 
   // 🧮 SCIENTIFIC CALCULATOR
-  {
-    slug: "scientific-calculator",
-    title: "Scientific Calculator",
-    description:
-      "Feature-rich scientific calculator with accurate computations and sleek UI.",
-    image:
-      "https://media.istockphoto.com/id/1158237703/photo/indian-money-with-calculator-on-black-textured-background.jpg",
-    tech: ["HTML5", "CSS3", "JavaScript"],
-    liveUrl:
-      "https://scientific-calculator-app-two.vercel.app/",
-    github:
-      "https://github.com/vaibhav77471/SCIENTIFIC-CALCULATOR-APP",
-    category: "Personal",
+  // {
+  //   slug: "scientific-calculator",
+  //   title: "Scientific Calculator",
+  //   description:
+  //     "Feature-rich scientific calculator with accurate computations and sleek UI.",
+  //   image:
+  //     "https://media.istockphoto.com/id/1158237703/photo/indian-money-with-calculator-on-black-textured-background.jpg",
+  //   tech: ["HTML5", "CSS3", "JavaScript"],
+  //   liveUrl:
+  //     "https://scientific-calculator-app-two.vercel.app/",
+  //   github:
+  //     "https://github.com/vaibhav77471/SCIENTIFIC-CALCULATOR-APP",
+  //   category: "Personal",
 
-    problem:
-      "Need for a simple yet powerful scientific calculator in browser.",
-    approach:
-      "Built using vanilla JavaScript with expression parsing and math functions.",
-    flow: "Input Expression → Calculate → Show Result",
+  //   problem:
+  //     "Need for a simple yet powerful scientific calculator in browser.",
+  //   approach:
+  //     "Built using vanilla JavaScript with expression parsing and math functions.",
+  //   flow: "Input Expression → Calculate → Show Result",
 
-    highlights: [
-      "Scientific operations support",
-      "Clean UI design",
-      "Fast calculations",
-    ],
-  },
+  //   highlights: [
+  //     "Scientific operations support",
+  //     "Clean UI design",
+  //     "Fast calculations",
+  //   ],
+  // },
 
   // 🚀 QUICK SERVICES
   {
