@@ -123,11 +123,26 @@ export default function AboutSection() {
               📱 <span className="text-[#fff]">+91 8770643009</span>
             </div>
 
-            <div className="flex gap-[12px]">
-              <a className="hover:text-[#fff] transition" href="#">LinkedIn</a>
-              <a className="hover:text-[#fff] transition" href="#">GitHub</a>
-              <a className="hover:text-[#fff] transition" href="#">Medium</a>
-            </div>
+           <div className="flex gap-[10px] flex-wrap justify-center">
+            {[
+              { label: "Email", href: "mailto:vaibhavsoni044@gmail.com" },
+              { label: "LinkedIn", href: "https://linkedin.com" },
+              { label: "GitHub", href: "https://github.com" },
+              { label: "Medium", href: "https://medium.com" },
+            ].map((item) => (
+              <a
+                key={item.label}
+                href={item.href}
+                target="_blank"
+                className="relative overflow-hidden flex items-center justify-center w-[100px] h-[52px] rounded-full bg-[rgba(255,255,255,0.06)] border border-[rgba(255,255,255,0.15)] backdrop-blur-[12px] text-[15px] text-[rgba(255,255,255,0.75)] font-semibold no-underline transition-all duration-300 hover:scale-110 hover:text-black hover:bg-white hover:shadow-[0_0_25px_rgba(168,85,247,0.5)]"
+              >
+                {item.label}
+
+                {/* glossy moving shine */}
+                <span className="absolute top-0 left-[-75%] w-[50%] h-full bg-gradient-to-r from-transparent via-white/40 to-transparent skew-x-[-20deg] animate-shine" />
+              </a>
+            ))}
+          </div>
 
           </div>
 

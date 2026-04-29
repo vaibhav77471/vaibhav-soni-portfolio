@@ -2,16 +2,7 @@
 
 export default function ExperienceCard({ exp }) {
   return (
-    <div className="
-      relative p-[28px] rounded-[28px]
-      border border-[#fff]/10
-      bg-[#fff]/5
-      backdrop-blur-[20px]
-      hover:bg-[#fff]/10
-      transition duration-300
-      overflow-hidden
-      group
-    ">
+    <div className=" relative p-[28px] rounded-[28px] border border-[#fff]/10 bg-[#fff]/5 backdrop-blur-[20px] hover:bg-[#fff]/10 transition duration-300 overflow-hidden group ">
 
       {/* COLOR GLOW */}
       <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition">

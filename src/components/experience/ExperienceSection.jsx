@@ -16,8 +16,9 @@ export default function ExperienceSection() {
 
   return (
     <section
+      id="experience"
       onMouseMove={handleMove}
-      className="relative w-full py-[120px] flex items-center justify-center bg-black overflow-hidden"
+      className="relative scroll-mt-[40px] w-full py-[120px] flex items-center justify-center bg-black overflow-hidden"
     >
       {/* BACKGROUND */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(168,85,247,0.15),transparent_60%)]" />
