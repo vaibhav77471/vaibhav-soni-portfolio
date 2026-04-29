@@ -40,7 +40,7 @@ export default function Navbar() {
 
             <div className="flex items-center gap-[22px]">
 
-              {['Home', 'Projects', 'About', 'Blogs', 'Skills', 'Contact'].map((item) => (
+              {['Home', 'Projects', 'About','Experience', 'Blogs', 'Skills', 'Contact'].map((item) => (
                 <a
                   key={item}
                   href={`#${item.toLowerCase()}`}
@@ -88,7 +88,7 @@ export default function Navbar() {
       {isMobile && open && (
         <div className="bg-[rgba(0,0,0,0.7)] backdrop-blur-[18px] border-t border-[rgba(255,255,255,0.1)] px-[20px] py-[20px] justify-center items-center flex flex-col gap-[16px]">
 
-          {['Home', 'Projects', 'About', 'Blogs', 'Skills', 'Contact'].map((item) => (
+          {['Home', 'Projects', 'About', 'Experience', 'Blogs', 'Skills', 'Contact'].map((item) => (
             <a
               key={item}
               href={`#${item.toLowerCase()}`}
